@@ -38,4 +38,10 @@ public class Player {
     public Boolean isInATieWith(Player opponent) {
         return score.equals(opponent.getScore());
     }
+
+    public Boolean isInADeuceWith(Player opponent) {
+        return score >= 3
+                && opponent.getScore() >= 3
+                && isInATieWith(opponent);
+    }
 }

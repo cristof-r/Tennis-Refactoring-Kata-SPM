@@ -8,13 +8,10 @@ public class GamePlayer implements ResultProvider {
     }
 
     String getPlayerNameWithWin() {
-        if (game.getReceiver().getScore() >= 4
-                && (game.getReceiver().getScore() - game.getServer().getScore()) >= 2) {
+        if (game.getReceiver().hasWonAgainst(game.getServer()))
             return game.getReceiver().getName();
-        }
 
-        if (game.getServer().getScore() >= 4
-                && (game.getServer().getScore() - game.getReceiver().getScore()) >= 2) {
+        if (game.getServer().hasWonAgainst(game.getReceiver())) {
             return game.getServer().getName();
         }
 

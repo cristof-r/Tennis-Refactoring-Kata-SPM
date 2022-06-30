@@ -1,5 +1,3 @@
-import java.util.Objects;
-
 public class Deuce implements ResultProvider {
     private final TennisGame4 game;
     private final ResultProvider nextResult;
@@ -10,11 +8,9 @@ public class Deuce implements ResultProvider {
     }
 
     boolean isDeuce() {
-        return game.getServer().getScore() >= 3
-                && game.getReceiver().getScore() >= 3
-                && (Objects.equals(game.getServer().getScore(), game.getReceiver().getScore()));
+        return game.getServer().isInADeuceWith(game.getReceiver());
     }
-    
+
     @Override
     public TennisResult getResult() {
         if (isDeuce()) {

@@ -1,21 +1,21 @@
+import java.util.Objects;
+
 public class TennisGame4 implements TennisGame {
 
-    int serverScore;
-    int receiverScore;
-    String server;
-    String receiver;
+    private final Player server;
+    private final Player receiver;
 
-    public TennisGame4(String player1, String player2) {
-        server = player1;
-        receiver = player2;
+    public TennisGame4(String serverName, String receiverName) {
+        server = new Player(serverName);
+        receiver = new Player(receiverName);
     }
 
     @java.lang.Override
     public void wonPoint(String playerName) {
-        if (server.equals(playerName)) {
-            serverScore += 1;
+        if (server.getName().equals(playerName)) {
+            server.wonPoint();
         } else {
-            receiverScore += 1;
+            receiver.wonPoint();
         }
     }
 
@@ -31,22 +31,30 @@ public class TennisGame4 implements TennisGame {
     }
 
     boolean receiverHasAdvantage() {
-        return receiverScore >= 4 && (receiverScore - serverScore) == 1;
+        return receiver.getScore() >= 4 && (receiver.getScore() - server.getScore()) == 1;
     }
 
     boolean serverHasAdvantage() {
-        return serverScore >= 4 && (serverScore - receiverScore) == 1;
+        return server.getScore() >= 4 && (server.getScore() - receiver.getScore()) == 1;
     }
 
     boolean receiverHasWon() {
-        return receiverScore >= 4 && (receiverScore - serverScore) >= 2;
+        return receiver.getScore() >= 4 && (receiver.getScore() - server.getScore()) >= 2;
     }
 
     boolean serverHasWon() {
-        return serverScore >= 4 && (serverScore - receiverScore) >= 2;
+        return server.getScore() >= 4 && (server.getScore() - receiver.getScore()) >= 2;
     }
 
     boolean isDeuce() {
-        return serverScore >= 3 && receiverScore >= 3 && (serverScore == receiverScore);
+        return server.getScore() >= 3 && receiver.getScore() >= 3 && (Objects.equals(server.getScore(), receiver.getScore()));
+    }
+
+    public Player getServer() {
+        return server;
+    }
+
+    public Player getReceiver() {
+        return receiver;
     }
 }

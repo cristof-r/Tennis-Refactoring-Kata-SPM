@@ -10,7 +10,7 @@ public class GameReceiver implements ResultProvider {
     @Override
     public TennisResult getResult() {
         if (game.receiverHasWon()) {
-            return new TennisResult("Win for " + game.receiver, "");
+            return new TennisResult("Win for " + game.getReceiver().getName(), "");
         }
         return nextResult.getResult();
     }

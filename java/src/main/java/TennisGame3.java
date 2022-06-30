@@ -1,36 +1,48 @@
 
 public class TennisGame3 implements TennisGame {
-    
-    private int p2;
-    private int p1;
-    private String p1N;
-    private String p2N;
 
-    public TennisGame3(String p1N, String p2N) {
-        this.p1N = p1N;
-        this.p2N = p2N;
+    private int player1;
+    private int player2;
+    private final String player1Name;
+    private final String player2Name;
+
+    public TennisGame3(String player1Name, String player2Name) {
+        this.player1Name = player1Name;
+        this.player2Name = player2Name;
     }
 
     public String getScore() {
-        String s;
-        if (p1 < 4 && p2 < 4 && !(p1 + p2 == 6)) {
-            String[] p = new String[]{"Love", "Fifteen", "Thirty", "Forty"}; 
-            s = p[p1];
-            return (p1 == p2) ? s + "-All" : s + "-" + p[p2];
+        String standing;
+        if (scoreIsLow()) {
+            String[] points = new String[]{"Love", "Fifteen", "Thirty", "Forty"};
+            standing = points[player1];
+            return getLowScoreString(standing, points);
         } else {
-            if (p1 == p2)
+            if (player1 == player2)
                 return "Deuce";
-            s = p1 > p2 ? p1N : p2N;
-            return ((p1-p2)*(p1-p2) == 1) ? "Advantage " + s : "Win for " + s;
+            standing = player1 > player2 ? player1Name : player2Name;
+            return getHighScoreString(standing);
         }
     }
-    
+
+    private String getHighScoreString(String standing) {
+        return ((player1 - player2) * (player1 - player2) == 1) ? "Advantage " + standing : "Win for " + standing;
+    }
+
+    private String getLowScoreString(String standing, String[] points) {
+        return (player1 == player2) ? standing + "-All" : standing + "-" + points[player2];
+    }
+
     public void wonPoint(String playerName) {
-        if (playerName == "player1")
-            this.p1 += 1;
+        if (playerName.equals("player1"))
+            this.player1 += 1;
         else
-            this.p2 += 1;
+            this.player2 += 1;
         
+    }
+
+    private boolean scoreIsLow(){
+        return player1 < 4 && player2 < 4 && !(player1 + player2 == 6);
     }
 
 }

@@ -10,6 +10,6 @@ public class DefaultResult implements ResultProvider {
 
     @Override
     public TennisResult getResult() {
-        return new TennisResult(scores[game.serverScore], scores[game.receiverScore]);
+        return new TennisResult(scores[game.getServer().getScore()], scores[game.getReceiver().getScore()]);
     }
 }

@@ -22,10 +22,9 @@ public class TennisGame4 implements TennisGame {
     @java.lang.Override
     public String getScore() {
         TennisResult result = new Deuce(
-                this, new GameServer(
-                this, new GameReceiver(
+                this, new GamePlayer(
                 this, new AdvantagePlayer(
-                this, new DefaultResult(this))))).getResult();
+                this, new DefaultResult(this)))).getResult();
         return result.format();
     }
 

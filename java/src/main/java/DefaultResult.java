@@ -1,6 +1,6 @@
 public class DefaultResult implements ResultProvider {
 
-    private static final String[] scores = {"Love", "Fifteen", "Thirty", "Forty"};
+    private static final String[] SCORES = {"Love", "Fifteen", "Thirty", "Forty"};
 
     private final TennisGame4 game;
 
@@ -10,6 +10,6 @@ public class DefaultResult implements ResultProvider {
 
     @Override
     public TennisResult getResult() {
-        return new TennisResult(scores[game.getServer().getScore()], scores[game.getReceiver().getScore()]);
+        return new TennisResult(SCORES[game.getServer().getScore()], SCORES[game.getReceiver().getScore()]);
     }
 }

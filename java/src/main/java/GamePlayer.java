@@ -7,14 +7,28 @@ public class GamePlayer implements ResultProvider {
         this.nextResult = nextResult;
     }
 
+    String getPlayerNameWithWin() {
+        if (game.getReceiver().getScore() >= 4
+                && (game.getReceiver().getScore() - game.getServer().getScore()) >= 2) {
+            return game.getReceiver().getName();
+        }
+
+        if (game.getServer().getScore() >= 4
+                && (game.getServer().getScore() - game.getReceiver().getScore()) >= 2) {
+            return game.getServer().getName();
+        }
+
+        return null;
+    }
+
     @Override
     public TennisResult getResult() {
-        if (game.serverHasWon()) {
-            return new TennisResult("Win for " + game.getServer().getName(), "");
+        String playerNameWithWin = getPlayerNameWithWin();
+
+        if (playerNameWithWin != null) {
+            return new TennisResult("Win for " + playerNameWithWin, "");
         }
-        if (game.receiverHasWon()) {
-            return new TennisResult("Win for " + game.getReceiver().getName(), "");
-        }
+
         return nextResult.getResult();
     }
 }

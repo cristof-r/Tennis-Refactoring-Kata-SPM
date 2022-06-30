@@ -1,5 +1,3 @@
-import java.util.Objects;
-
 public class TennisGame4 implements TennisGame {
 
     private final Player server;
@@ -10,7 +8,7 @@ public class TennisGame4 implements TennisGame {
         receiver = new Player(receiverName);
     }
 
-    @java.lang.Override
+    @Override
     public void wonPoint(String playerName) {
         if (server.getName().equals(playerName)) {
             server.wonPoint();
@@ -19,33 +17,13 @@ public class TennisGame4 implements TennisGame {
         }
     }
 
-    @java.lang.Override
+    @Override
     public String getScore() {
         TennisResult result = new Deuce(
                 this, new GamePlayer(
                 this, new AdvantagePlayer(
                 this, new DefaultResult(this)))).getResult();
         return result.format();
-    }
-
-    boolean receiverHasAdvantage() {
-        return receiver.getScore() >= 4 && (receiver.getScore() - server.getScore()) == 1;
-    }
-
-    boolean serverHasAdvantage() {
-        return server.getScore() >= 4 && (server.getScore() - receiver.getScore()) == 1;
-    }
-
-    boolean receiverHasWon() {
-        return receiver.getScore() >= 4 && (receiver.getScore() - server.getScore()) >= 2;
-    }
-
-    boolean serverHasWon() {
-        return server.getScore() >= 4 && (server.getScore() - receiver.getScore()) >= 2;
-    }
-
-    boolean isDeuce() {
-        return server.getScore() >= 3 && receiver.getScore() >= 3 && (Objects.equals(server.getScore(), receiver.getScore()));
     }
 
     public Player getServer() {

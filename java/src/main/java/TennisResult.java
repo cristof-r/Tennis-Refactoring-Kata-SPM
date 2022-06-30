@@ -1,13 +1,13 @@
 public class TennisResult {
-    String serverScore;
-    String receiverScore;
+    private final String serverScore;
+    private final String receiverScore;
 
-    TennisResult(String serverScore, String receiverScore) {
+    public TennisResult(String serverScore, String receiverScore) {
         this.serverScore = serverScore;
         this.receiverScore = receiverScore;
     }
 
-    String format() {
+    public String format() {
         if ("".equals(receiverScore)) {
             return serverScore;
         }

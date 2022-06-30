@@ -7,9 +7,10 @@ public class GamePlayer implements ResultProvider {
         this.nextResult = nextResult;
     }
 
-    String getPlayerNameWithWin() {
-        if (game.getReceiver().hasWonAgainst(game.getServer()))
+    public String getPlayerNameWithWin() {
+        if (game.getReceiver().hasWonAgainst(game.getServer())) {
             return game.getReceiver().getName();
+        }
 
         if (game.getServer().hasWonAgainst(game.getReceiver())) {
             return game.getServer().getName();

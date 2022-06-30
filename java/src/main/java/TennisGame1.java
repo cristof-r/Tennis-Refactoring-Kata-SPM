@@ -24,12 +24,10 @@ public class TennisGame1 implements TennisGame {
 
     @Override
     public String getScore() {
-        if (player1.isInATieWith(player2)) {
-            if (player1.getScore() > 2) {
-                return "Deuce";
-            } else {
-                return getScoreName(player1) + "-All";
-            }
+        if (player1.isInADeuceWith(player2)) {
+            return "Deuce";
+        } else if (player1.isInATieWith(player2)) {
+            return getScoreName(player1) + "-All";
         } else if (player1.hasAdvantageOver(player2)) {
             return "Advantage " + player1.getName();
         } else if (player2.hasAdvantageOver(player1)) {

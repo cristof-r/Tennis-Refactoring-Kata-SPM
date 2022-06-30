@@ -40,8 +40,6 @@ public class Player {
     }
 
     public Boolean isInADeuceWith(Player opponent) {
-        return score >= 3
-                && opponent.getScore() >= 3
-                && isInATieWith(opponent);
+        return isInATieWith(opponent) && score >= 3;
     }
 }

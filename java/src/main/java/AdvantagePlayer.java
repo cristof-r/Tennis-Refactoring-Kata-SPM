@@ -7,14 +7,28 @@ public class AdvantagePlayer implements ResultProvider {
         this.nextResult = nextResult;
     }
 
+    String getPlayerNameWithAdvantage() {
+        if (game.getReceiver().getScore() >= 4
+                && (game.getReceiver().getScore() - game.getServer().getScore()) == 1) {
+            return game.getReceiver().getName();
+        }
+
+        if (game.getServer().getScore() >= 4
+                && (game.getServer().getScore() - game.getReceiver().getScore()) == 1) {
+            return game.getServer().getName();
+        }
+
+        return null;
+    }
+
     @Override
     public TennisResult getResult() {
-        if (game.receiverHasAdvantage()) {
-            return new TennisResult("Advantage " + game.getReceiver().getName(), "");
+        String playerNameWithAdvantage = getPlayerNameWithAdvantage();
+
+        if (playerNameWithAdvantage != null) {
+            return new TennisResult("Advantage " + playerNameWithAdvantage, "");
         }
-        if (game.serverHasAdvantage()) {
-            return new TennisResult("Advantage " + game.getServer().getName(), "");
-        }
+
         return nextResult.getResult();
     }
 }

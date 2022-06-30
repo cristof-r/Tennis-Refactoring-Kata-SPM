@@ -11,7 +11,7 @@ public class TennisGame2 implements TennisGame {
 
     @Override
     public String getScore() {
-        if (player1.isInATieWith(player2) && player1.getScore() >= 3) {
+        if (player1.isInADeuceWith(player2)) {
             return "Deuce";
         }
 

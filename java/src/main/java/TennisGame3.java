@@ -16,7 +16,7 @@ public class TennisGame3 implements TennisGame {
             standing = points[player1.getScore()];
             return getLowScoreString(standing, points);
         } else {
-            if (player1.isInATieWith(player2)) {
+            if (player1.isInADeuceWith(player2)) {
                 return "Deuce";
             }
             standing = player1.getScore() > player2.getScore() ? player1.getName() : player2.getName();

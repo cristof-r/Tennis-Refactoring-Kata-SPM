@@ -7,7 +7,7 @@ public class Deuce implements ResultProvider {
         this.nextResult = nextResult;
     }
 
-    boolean isDeuce() {
+    public boolean isDeuce() {
         return game.getServer().isInADeuceWith(game.getReceiver());
     }
 

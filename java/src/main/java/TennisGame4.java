@@ -24,9 +24,8 @@ public class TennisGame4 implements TennisGame {
         TennisResult result = new Deuce(
                 this, new GameServer(
                 this, new GameReceiver(
-                this, new AdvantageServer(
-                this, new AdvantageReceiver(
-                this, new DefaultResult(this)))))).getResult();
+                this, new AdvantagePlayer(
+                this, new DefaultResult(this))))).getResult();
         return result.format();
     }
 

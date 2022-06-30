@@ -8,13 +8,10 @@ public class AdvantagePlayer implements ResultProvider {
     }
 
     String getPlayerNameWithAdvantage() {
-        if (game.getReceiver().getScore() >= 4
-                && (game.getReceiver().getScore() - game.getServer().getScore()) == 1) {
+        if (game.getReceiver().hasAdvantageOver(game.getServer()))
             return game.getReceiver().getName();
-        }
 
-        if (game.getServer().getScore() >= 4
-                && (game.getServer().getScore() - game.getReceiver().getScore()) == 1) {
+        if (game.getServer().hasAdvantageOver(game.getReceiver())) {
             return game.getServer().getName();
         }
 
